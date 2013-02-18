@@ -16,6 +16,12 @@ group :assets do
   gem 'uglifier', '1.2.3'
 end
 
+# Core dependencies, pulled from master
+gem 'omniauth', :git => 'git://github.com/intridea/omniauth.git'
+gem 'omniauth-tumblr'
+gem 'omniauth-twitter'
+gem 'oauth'
+
 gem 'jquery-rails', '2.0.2'
 
 group :production do
