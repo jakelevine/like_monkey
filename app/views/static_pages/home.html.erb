@@ -1,17 +1,24 @@
 <html>
 
-<h1>StaticPages#home</h1>
+<div class="hero-unit">
+  <h1>Welcome to Tumblrlike</h1>
+  <p></p>	
+    <% if current_user %>
+          <p>
+          	You are signed in as <%= current_user.name %>
+          </p>
+          <p>
+          <%= link_to "See What Your Friends Are Liking", likes_path, class: "btn btn-info btn-large" %>
+      	</p>
+          <%= link_to "Sign Out", signout_path, class: "btn btn-large" %>
 
-<% if flash[:notice] %>
-    <div id="notice"><%= flash[:notice] %></div>
-<% end %>
-
-  	<% if current_user %>
-          Welcome <%= current_user.name %>!
-          <%= link_to "Sign Out", signout_path %>
         <% else %>
-          <%= link_to "Sign in with tumblr", "/auth/tumblr" %>
+          <%= link_to "Sign in with tumblr", "/auth/tumblr", class: "btn btn-primary btn-large" %>
  	<% end %>
+  </p>
+</div>
+
+  	
 
 
 </html>

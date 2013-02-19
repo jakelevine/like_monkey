@@ -1,0 +1,42 @@
+<html>
+
+<div class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+  	<div class="offset1">
+    <a class="brand" href="#">Likes!</a>
+    
+    <ul class="nav">
+	<% @likes.each do |blogs| %>
+	  <li><a href="#<%= blogs[0] %>"><%= blogs[0] %></a></li>	
+	<% end %>
+    </ul>
+
+	</div>
+  </div>
+</div>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<div class="row">
+  <div class="span8 offset2">
+
+		<% @likes.each do |blogs| %>
+			<div class="anchor" id ="<%= blogs[0] %>"></div>
+			<%= blogs[0] %>
+
+			<p>
+				<% blogs[1].each do |posts| %>
+					<a href="<%= posts[1] %>"><%= posts[0] %></a>
+					<p>
+				<% end %>
+
+
+		<% end %>
+
+	</div>
+</div>
+
+
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+</body>
+</html>

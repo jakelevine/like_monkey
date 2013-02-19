@@ -6,13 +6,8 @@ class TumblrControllerController < ApplicationController
 		response = User.get_following(current_user)
 		
 		likes = User.get_following_likes(current_user)
-
-		render :json => likes
-		
-
-
-		#render :json => current_user.token
-		
+		@likes = likes
+		return @likes
     end
 
 end
