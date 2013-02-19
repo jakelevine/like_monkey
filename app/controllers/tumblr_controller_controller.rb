@@ -8,6 +8,7 @@ class TumblrControllerController < ApplicationController
 		likes = User.get_following_likes(current_user)
 		@likes = likes
 		return @likes
+		
     end
 
 end
