@@ -1,11 +1,11 @@
 class User < ActiveRecord::Base
 
-	#API_KEY = '0GMVFegjf6D0cyWTCP6ilhgYwokPRh3Fgy8TvA4mMcez6pmhiJ' 
-	#API_SECRET = 'G6IHgthYTBmMyupTGO1yxQlmb7c91s6f9sONOakZuejyfayxlA'
+	API_KEY = '0GMVFegjf6D0cyWTCP6ilhgYwokPRh3Fgy8TvA4mMcez6pmhiJ' 
+	API_SECRET = 'G6IHgthYTBmMyupTGO1yxQlmb7c91s6f9sONOakZuejyfayxlA'
 
 	#on_heroku
-	API_KEY = 'ZozRvHImkaTAbHr2VKeQ4cMlzAmI77wjHc4gRT2CMzMDoatBqj' 
-	API_SECRET = 'y4JJuYmOma0BaFNKHeJYSlIJ4bY2UeZiwjIDt6LxbvHPrynUyI'
+	#API_KEY = 'ZozRvHImkaTAbHr2VKeQ4cMlzAmI77wjHc4gRT2CMzMDoatBqj' 
+	#API_SECRET = 'y4JJuYmOma0BaFNKHeJYSlIJ4bY2UeZiwjIDt6LxbvHPrynUyI'
 
 	def self.create_with_omniauth(auth)
 	  create! do |user|
@@ -34,13 +34,25 @@ class User < ActiveRecord::Base
 
 	def self.get_following(user)
 		access_token = User.prepare_access_token(user)
-		response = access_token.get("http://api.tumblr.com/v2/user/following")
-		final = JSON.parse(response.body)
-		urls = []
-		final["response"]["blogs"].each do |blog|
-			urls.push(blog["name"])
+		name = user.name	
+		
+		info = access_token.get("http://api.tumblr.com/v2/user/info")
+		infoJSON = JSON.parse(info.body)
+		following = infoJSON["response"]["user"]["following"]
+
+		#timestorun = Integer(following)/20+1
+		timestorun = 2
+		names = []
+		n = 0
+		while n < timestorun do
+			response = access_token.get("http://api.tumblr.com/v2/user/following?offset="+(n*20).to_s)
+			final = JSON.parse(response.body)
+			final["response"]["blogs"].each do |blog|
+				names.push(blog["name"])
+			end
+			n+=1
 		end
-		user.following = urls
+		user.following = names
 		user.save
 		return user.following
 	end
@@ -55,7 +67,7 @@ class User < ActiveRecord::Base
 			response = access_token.get(url)			
 			final = JSON.parse(response.body)
 			
-			if final["meta"]["status"] == 200
+			if final["meta"]["status"] == 200 and final["response"]["liked_posts"].count > 5
 				likes = []
 				final["response"]["liked_posts"].each do |like|
 					likes.push([like["slug"], like["post_url"], like["blog_name"], like["date"]])

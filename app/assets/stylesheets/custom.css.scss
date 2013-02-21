@@ -1,7 +1,16 @@
 @import "bootstrap";
 body{
-	
+}
+
+.well{
+	position:fixed;
+	margin-top:60px;
+
 }
 .anchor{
-	padding-top: 50px;
+	padding-top:60px;
+}
+
+.navbar{
+	min-width:730px;
 }

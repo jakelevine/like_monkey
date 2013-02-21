@@ -1,19 +1,42 @@
 <html>
 
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">      
+          <a class="brand" href="/">Like Monkey</a>
+          <div class="nav-collapse collapse">
+            
+            <% if current_user %>
+            <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link"><%= current_user.name %></a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="/signout" class="navbar-link">Sign out</a>
+            </p>
+            <% end %>
+            <ul class="nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="#about">About</a></li>              
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
 <div class="hero-unit">
-  <h1>Welcome to Tumblrlike</h1>
-  <p></p>	
+  <h1>Welcome to Like Monkey!</h1>
     <% if current_user %>
           <p>
-          	You are signed in as <%= current_user.name %>
+          	Great, you are signed in as <%= current_user.name %>. Now see what your friends are liking.
           </p>
           <p>
-          <%= link_to "See What Your Friends Are Liking", likes_path, class: "btn btn-info btn-large" %>
-      	</p>
+          <%= link_to "Dance Monkey! Dance!", likes_path, class: "btn btn-info btn-large" %>
           <%= link_to "Sign Out", signout_path, class: "btn btn-large" %>
-
+          </p>
         <% else %>
-          <%= link_to "Sign in with tumblr", "/auth/tumblr", class: "btn btn-primary btn-large" %>
+          <p>See what your friends are Liking on Tumblr</p> 
+          <br>
+
+          <%= link_to "Sign in with Tumblr", "/auth/tumblr", class: "btn btn-primary btn-large" %>
  	<% end %>
   </p>
 </div>

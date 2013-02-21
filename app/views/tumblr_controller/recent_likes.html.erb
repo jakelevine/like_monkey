@@ -1,31 +1,48 @@
+
 <html>
 
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-  	<div class="offset1">
-    <a class="brand" href="#">Likes!</a>
-    
-    <ul class="nav">
+<div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+      
+          <a class="brand" href="/">Like Monkey</a>
+          <div class="nav-collapse collapse">
+            <p class="navbar-text pull-right">
+              Logged in as <a href="#" class="navbar-link"><%= current_user.name %></a>
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <a href="/signout" class="navbar-link">Sign out</a>
+            </p>
+            <ul class="nav">
+              <li><a href="/">Home</a></li>
+              <li><a href="#about">About</a></li>              
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+
+<body data-spy="scroll" data-target="well" data-offset="50">
+
+    <div class="well sidebar-nav span3">
+    <ul class="nav nav-list">
+	<li class="nav-header">Blogs You Follow</li>
 	<% @likes.each do |blogs| %>
 	  <li><a href="#<%= blogs[0] %>"><%= blogs[0] %></a></li>	
 	<% end %>
     </ul>
 
 	</div>
-  </div>
-</div>
-
-<body data-spy="scroll" data-target=".navbar" data-offset="50">
+  
 
 <div class="row">
-  <div class="span8 offset2">
+  <div class="span8 offset5">
 
 		<% @likes.each do |blogs| %>
 			<div class="anchor" id ="<%= blogs[0] %>"></div>
 			<%= blogs[0] %>
 
 			<p>
-				<% blogs[1].each do |posts| %>
+				<% blogs[1].first(10).each do |posts| %>
 					<a href="<%= posts[1] %>"><%= posts[0] %></a>
 					<p>
 				<% end %>
