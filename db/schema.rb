@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130218215257) do
+ActiveRecord::Schema.define(:version => 20130221062855) do
 
   create_table "users", :force => true do |t|
     t.string   "provider"
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(:version => 20130218215257) do
     t.datetime "updated_at", :null => false
     t.string   "token"
     t.string   "secret"
-    t.string   "following"
+    t.text     "following"
   end
 
 end
