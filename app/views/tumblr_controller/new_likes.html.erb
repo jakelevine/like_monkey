@@ -23,7 +23,7 @@
 				<%= post["body"].first(500).html_safe %>...</p></a></b></i></strong></blockquote></blockquote>
 				<p>
 				<a href="<%= post["post_url"] %>" target="_blank">View original</a>	
-				<iframe class="framey" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=<%= post["blog_name"] %>&color_scheme=light"></iframe>
+				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <%= post["blog_name"] %> on Tumblr</a>
 		
 				<hr>
 			<% elsif post["type"] == "photo" %>
@@ -33,7 +33,7 @@
 				<%= post["caption"].first(500).html_safe %></p></a></b></i></strong></blockquote></blockquote>
 				<br>
 				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
-				<iframe class="framey" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=<%= post["blog_name"] %>&color_scheme=light"></iframe>
+				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <%= post["blog_name"] %> on Tumblr</a>				
 				<hr>
 			<% elsif post["type"] == "video" %>
 				
@@ -43,7 +43,7 @@
 				<%= post["caption"].first(500).html_safe %></p></a></b></i></strong></blockquote></blockquote>
 				<br>
 				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
-				<iframe class="framey" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=<%= post["blog_name"] %>&color_scheme=light"></iframe>
+				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <%= post["blog_name"] %> on Tumblr</a>
 				<hr>
 
 			<% elsif post["type"] == "link" %>
@@ -54,7 +54,7 @@
 				<%= post["description"].first(500).html_safe %></p></a></b></i></strong></blockquote></blockquote>
 				<br>
 				<a href="<%= post["post_url"] %>" target="_blank">View original</a>&nbsp;&nbsp;&nbsp;
-				<iframe class="framey" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=<%= post["blog_name"] %>&color_scheme=light"></iframe>
+				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <%= post["blog_name"] %> on Tumblr</a>
 				<hr>
 
 			<% elsif post["type"] == "quote" %>
@@ -65,7 +65,7 @@
 				<%= post["source"].first(500).html_safe %></p></a></b></i></strong></blockquote></blockquote>
 				<br>
 				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
-				<iframe class="framey" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=<%= post["blog_name"] %>&color_scheme=light"></iframe>
+				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <%= post["blog_name"] %> on Tumblr</a>
 				<hr>
 			<% end %>
 			
