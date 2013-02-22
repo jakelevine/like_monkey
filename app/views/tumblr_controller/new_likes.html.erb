@@ -1,0 +1,82 @@
+<body data-spy="scroll" data-target="#thenav">
+    <div class="well sidebar-nav span3" id="thenav">
+    <ul class="nav nav-list">
+	<li class="nav-header">Blogs You Follow</li>
+	<% @response.each do |user| %>
+	  <li><a href="#<%= user[0] %>"><%= user[0] %></a></li>	
+	<% end %>
+    </ul>
+
+	</div>
+
+<div class="row">
+  <div class="span8 offset5">
+
+	<% @response.each do |user| %>
+		<div id="<%= user[0] %>" class="anchor">
+		<h1><%= user[0] %>'s Liked Posts</h1>
+		<br>
+		<% user[1]["response"]["liked_posts"].first(10).each do |post| %>
+			<% if post["type"] == "text" %>
+				<h2><a href="<%= post["post_url"] %>" target="_blank"><%= post["title"] %> </a></h2>
+				<br>
+				<%= post["body"].first(500).html_safe %>...</p></a></b></i></strong></blockquote></blockquote>
+				<p>
+				<a href="<%= post["post_url"] %>" target="_blank">View original</a>	
+				<iframe class="framey" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=<%= post["blog_name"] %>&color_scheme=light"></iframe>
+		
+				<hr>
+			<% elsif post["type"] == "photo" %>
+				<a href="<%= post["post_url"] %>" target="_blank"><img src="<%= post["photos"][0]["alt_sizes"][1]["url"] %>"></a>
+				<br>
+				<br>
+				<%= post["caption"].first(500).html_safe %></p></a></b></i></strong></blockquote></blockquote>
+				<br>
+				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
+				<iframe class="framey" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=<%= post["blog_name"] %>&color_scheme=light"></iframe>
+				<hr>
+			<% elsif post["type"] == "video" %>
+				
+				<%= post["player"][2]["embed_code"].html_safe %>
+				<br>
+				<br>
+				<%= post["caption"].first(500).html_safe %></p></a></b></i></strong></blockquote></blockquote>
+				<br>
+				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
+				<iframe class="framey" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=<%= post["blog_name"] %>&color_scheme=light"></iframe>
+				<hr>
+
+			<% elsif post["type"] == "link" %>
+				
+				<h2><a href="<%= post["url"] %>" target="_blank"><%= post["title"] %> </a></h2>
+				<br>
+				<br>
+				<%= post["description"].first(500).html_safe %></p></a></b></i></strong></blockquote></blockquote>
+				<br>
+				<a href="<%= post["post_url"] %>" target="_blank">View original</a>&nbsp;&nbsp;&nbsp;
+				<iframe class="framey" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=<%= post["blog_name"] %>&color_scheme=light"></iframe>
+				<hr>
+
+			<% elsif post["type"] == "quote" %>
+				
+				<br>
+				<%= post["text"].first(500).html_safe %></p></a></b></i></strong></blockquote></blockquote>
+				<br>
+				<%= post["source"].first(500).html_safe %></p></a></b></i></strong></blockquote></blockquote>
+				<br>
+				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
+				<iframe class="framey" frameborder="0" border="0" scrolling="no" allowtransparency="true" height="25" width="200" src="http://platform.tumblr.com/v1/follow_button.html?button_type=1&tumblelog=<%= post["blog_name"] %>&color_scheme=light"></iframe>
+				<hr>
+			<% end %>
+			
+		<% end %>
+	</div>
+	<% end %>
+
+	</div>
+</div>
+
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+

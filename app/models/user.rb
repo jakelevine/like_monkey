@@ -78,4 +78,26 @@ class User < ActiveRecord::Base
 		return likehash
 	end
 
+	def self.get_following_likes_all(user)
+		access_token = User.prepare_access_token(user)
+		
+		likehash = Hash.new		
+
+		user.following.each do |name|
+
+			url = "http://api.tumblr.com/v2/blog/"+name+".tumblr.com/likes?api_key="+API_KEY
+			response = access_token.get(url)			
+			final = JSON.parse(response.body)
+			
+			if final["meta"]["status"] == 200 and final["response"]["liked_posts"].count > 3
+				likehash[name] = final
+			end
+		
+		end
+
+		return likehash
+
+			
+	end 
+
 end

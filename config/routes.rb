@@ -1,12 +1,17 @@
 SampleApp::Application.routes.draw do
 
 
+  get "tumblr_controller/new_likes"
+
   root to: 'static_pages#home'
   match "/about" => "static_pages#about", :as => :likes
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
 
-  match "/likes" => "tumblr_controller#recent_likes", :as => :likes
+#  match "/likes" => "tumblr_controller#recent_likes", :as => :likes
+
+  match "/likes" => "tumblr_controller#new_likes", :as => :likes
+
 
 
   # resources :users, :only => [ :show, :edit, :update ]

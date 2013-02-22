@@ -13,6 +13,16 @@ class TumblrControllerController < ApplicationController
 		#end
     end
 
+    def new_likes
+    	following = User.get_following(current_user)
+    	@response = User.get_following_likes_all(current_user)
+    	return @response
+    	
+
+
+
+    end 
+
 end
 
 #render :json => response
