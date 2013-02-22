@@ -1,6 +1,8 @@
 SampleApp::Application.routes.draw do
-  root to: 'static_pages#home'
 
+
+  root to: 'static_pages#home'
+  match "/about" => "static_pages#about", :as => :likes
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
 
