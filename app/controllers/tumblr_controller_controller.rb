@@ -16,7 +16,11 @@ class TumblrControllerController < ApplicationController
     def new_likes
     	following = User.get_following(current_user)
     	@response = User.get_following_likes_all(current_user)
-    	return @response
+    	#render :json => @response
+    	@response = Kaminari.paginate_array(@response).page(params[:page]).per(5)
+    			    
+
+    	
     	
 
 

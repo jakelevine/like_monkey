@@ -81,7 +81,7 @@ class User < ActiveRecord::Base
 	def self.get_following_likes_all(user)
 		access_token = User.prepare_access_token(user)
 		
-		likehash = Hash.new		
+		like_array = Array.new
 
 		user.following.each do |name|
 
@@ -89,13 +89,15 @@ class User < ActiveRecord::Base
 			response = access_token.get(url)			
 			final = JSON.parse(response.body)
 			
-			if final["meta"]["status"] == 200 and final["response"]["liked_posts"].count > 3
-				likehash[name] = final
+
+			if final["meta"]["status"] == 200 and final["response"]["liked_posts"].count > 2
+				final["response"]["username"] = name
+				like_array.push(final["response"])
 			end
 		
 		end
 
-		return likehash
+		return like_array
 
 			
 	end 
