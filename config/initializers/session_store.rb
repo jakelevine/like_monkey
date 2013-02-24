@@ -7,14 +7,3 @@ SampleApp::Application.config.session_store :cookie_store, key: '_sample_app_ses
 # (create the session table with "rails generate session_migration")
 # SampleApp::Application.config.session_store :active_record_store
 
-# Session cache
-ActionController::Base.session = {
-  :namespace   => 'sessions',
-  :expire_after => 20.minutes.to_i,
-  :memcache_server => ['server-1:11211', 'server-2:11211'],
-  :key         => ...,
-  :secret      => ...
-}
-
-require 'action_controller/session/dalli_store'
-ActionController::Base.session_store = :dalli_store
