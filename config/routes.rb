@@ -1,7 +1,6 @@
 SampleApp::Application.routes.draw do
 
 
-  get "tumblr_controller/new_likes"
 
   root to: 'static_pages#home'
   match "/about" => "static_pages#about", :as => :likes
@@ -10,7 +9,7 @@ SampleApp::Application.routes.draw do
 
 #  match "/likes" => "tumblr_controller#recent_likes", :as => :likes
 
-  #match "/likes" => "tumblr_controller#new_likes", :as => :likes
+  match "/likes" => "tumblr_controller#new_likes", :as => :likes
   match '/likes(/:page)', :controller => 'tumblr_controller', :action => 'new_likes', :as => :likes
 
 

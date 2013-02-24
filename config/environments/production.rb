@@ -1,4 +1,5 @@
 SampleApp::Application.configure do
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # Code is not reloaded between requests
@@ -6,8 +7,11 @@ SampleApp::Application.configure do
 
   # Full error reports are disabled and caching is turned on
   config.consider_all_requests_local       = false
-  config.action_controller.perform_caching = false
+#  config.action_controller.perform_caching = true
 
+  config.cache_store = :dalli_store
+
+  
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false

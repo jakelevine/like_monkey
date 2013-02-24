@@ -1,5 +1,7 @@
 class TumblrControllerController < ApplicationController
 
+	caches_action :news_likes
+
 #	caches_page :recent_likes
 	
 	def recent_likes
@@ -14,16 +16,12 @@ class TumblrControllerController < ApplicationController
     end
 
     def new_likes
-    	following = User.get_following(current_user)
-    	@response = User.get_following_likes_all(current_user)
-    	#render :json => @response
-    	@response = Kaminari.paginate_array(@response).page(params[:page]).per(5)
-    			    
 
-    	
-    	
-
-
+    	@response = Rails.cache.fetch(current_user.name) {
+			following = User.get_following(current_user)
+			@response = User.get_following_likes_all(current_user)
+		}
+		@response = Kaminari.paginate_array(@response).page(params[:page]).per(5)    			      		
 
     end 
 
