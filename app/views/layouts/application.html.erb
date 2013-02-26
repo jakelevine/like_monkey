@@ -14,6 +14,7 @@
 
 
 </head>
+
 <div class="navbar navbar-inverse navbar-fixed-top">
       <div class="navbar-inner">
         <div class="container-fluid">      
@@ -29,7 +30,6 @@
             <% end %>
 
             <ul class="nav">
-              <li><a href="/">Home</a></li>
               <li><a href="/about">About</a></li>              
             </ul>
           </div><!--/.nav-collapse -->
@@ -39,10 +39,30 @@
 <body>
 
 
+
 <%= yield %>
 
 
     <div id="footer">
+      
+      <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=376207995819674";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+      <div class="fb-like" data-href="http://thelikemonkey.com/" data-send="false" data-layout="button_count" data-width="200" data-show-faces="false"></div>
+
+      &nbsp;&nbsp;
+
+      <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.thelikemonkey.com" data-text="See what your friends are Liking on Tumblr!" data-via="jrlevine" data-related="jrlevine" data-dnt="true">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+
+      <br><br>
         <p class="muted credit">Brought to you by <a href="http://jakelevine.me" target="_blank">Jake Levine</a> / <a href="http://www.twitter.com" target="_blank">@jrlevine</a></p> 
     </div>
 </body>

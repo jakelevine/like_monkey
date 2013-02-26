@@ -102,4 +102,25 @@ class User < ActiveRecord::Base
 			
 	end 
 
+	def self.get_sorted_by_date(response)
+		
+		post_array = Array.new
+		response.each do |blog|
+			blog["liked_posts"].each do |post|
+				post["username"] = blog["username"]
+				post_array.push(post)				
+			end
+		end
+		return post_array.sort_by {|hash| hash["timestamp"]}.reverse
+
+	
+
+	end
+
+
+
+
+
+
+
 end

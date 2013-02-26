@@ -1,19 +1,25 @@
-<div class="hero-unit">
-  <img src="http://1.bp.blogspot.com/_4HSUEmGT9Q8/TDXzm1B2EZI/AAAAAAAAAGg/mlwmDoQWbsQ/s320/monkey_dance_left.gif" class="monkey span3 offset10">
-  <h1>Welcome to Like Monkey!</h1>
-  
-    
-        <% if current_user %>
-        <br>
-          <p>Great, you are signed in as <%= current_user.name %>. Now see what your friends are liking.</p>
-          <br>
-          <%= link_to "Dance Monkey! Dance!", likes_path, class: "btn btn-info btn-large" %>
-          
 
-        <% else %>
-        <br>
-          <p>See what your friends are Liking on Tumblr</p> 
-          <br>
-          <%= link_to "Sign In With Tumblr", "/auth/tumblr", class: "btn btn-primary btn-large" %>
-        <% end %>
+<div class="hero-unit row" style="min-width: 980px">
+        <div class = "span10">
+          <h1>Welcome to Like Monkey!</h1>
+          
+            
+                <% if current_user %>
+                <br>
+                  <p>Great, you are signed in as <%= current_user.name %>. Now see what your friends are liking.</p>
+                  <br>
+                  <%= link_to "Dance Monkey! Dance!", likes_path, class: "btn btn-info btn-large" %>
+                  
+
+                <% else %>
+                <br>
+                  <p>See what your friends are Liking on Tumblr</p> 
+                  <br>
+                  <%= link_to "Sign In With Tumblr", "/auth/tumblr", class: "btn btn-primary btn-large" %>
+                <% end %>
+          </div>
+          <div class="span2 pull-right">
+            <img src="http://1.bp.blogspot.com/_4HSUEmGT9Q8/TDXzm1B2EZI/AAAAAAAAAGg/mlwmDoQWbsQ/s320/monkey_dance_left.gif" width="200px">
+          </div>
+
 </div>

@@ -3,30 +3,23 @@
     <div class ="well">
     <ul class="nav nav-list">
 	<li class="nav-header">Sort By</li>
-	<li><a href="/recent">Most Recent</a></li>
-	<li class="active"><a href="/likes">Blogs You Follow</a></li>
-	<hr>
-	<li class="nav-header">Blogs You Follow</li>
-	<% @response.first(5).each do |user| %>
-	  <li><a href="#<%= user["username"] %>"><%= user["username"] %></a></li>	
-	<% end %>
-	
+	<li class="active"><a href="/recent">Most Recent</a></li>
+	<li><a href="/likes">Blogs You Follow</a></li>
     </ul>
 	</div>
-	<%= paginate @response, :left => 0, :right => 1, :window => 1 %>
+	<%= paginate @sorted_by_time, :left => 0, :right => 1, :window => 1 %>
+
 	</div>
 
 
 
 <div class="row">
   <div class="span7 offset5">
-
-	<% @response.each do |user| %>
-		<div id="<%= user["username"] %>" class="anchor">
-		<h1><%= user["username"] %>'s liked posts</h1>
-		<br>
-		<% user["liked_posts"].first(10).each do |post| %>
+  		<div id="posts" class="anchor">
+  		<% @sorted_by_time.each do |post| %>
 			<% if post["type"] == "text" %>
+			<div class="well">				
+				<h3 class="lead">liked by <strong><%= post["username"] %></strong></h3>
 				<h2><a href="<%= post["post_url"] %>" target="_blank"><%= post["title"] %> </a></h2>
 				<br>
 					<%= truncate_html post["body"], :length => 450 %>
@@ -34,9 +27,11 @@
 				<p>
 				<a href="<%= post["post_url"] %>" target="_blank">View original</a>	
 				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <strong><%= post["blog_name"] %></strong> on Tumblr</a>				
-		
-				<hr>
+			</div> 
 			<% elsif post["type"] == "photo" %>
+			<div class="well">
+
+				<h3 class="lead">liked by <strong><%= post["username"] %></strong></h3>
 				<a href="<%= post["post_url"] %>" target="_blank"><img src="<%= post["photos"][0]["alt_sizes"][1]["url"] %>"></a>
 				<br>
 				<br>
@@ -44,9 +39,11 @@
 				<br>
 				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
 				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <strong><%= post["blog_name"] %></strong> on Tumblr</a>				
-				<hr>
+			</div>
 			<% elsif post["type"] == "video" %>
-				
+			<div class="well">
+				<h3 class="lead">liked by <strong><%= post["username"] %></strong></h3>
+
 				<%= post["player"][2]["embed_code"].html_safe %>
 				<br>
 				<br>
@@ -54,10 +51,11 @@
 				<br>
 				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
 				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <strong><%= post["blog_name"] %></strong> on Tumblr</a>				
-				<hr>
+			</div>
 
 			<% elsif post["type"] == "link" %>
-				
+			<div class="well">
+				<h3 class="lead">liked by <strong><%= post["username"] %></strong></h3>
 				<h2><a href="<%= post["url"] %>" target="_blank"><%= post["title"] %> </a></h2>
 				<br>
 				<br>
@@ -65,25 +63,23 @@
 				<br>
 				<a href="<%= post["post_url"] %>" target="_blank">View original</a>&nbsp;&nbsp;&nbsp;
 				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <strong><%= post["blog_name"] %></strong> on Tumblr</a>				
-				<hr>
-
+			</div>
 			<% elsif post["type"] == "quote" %>
-				
+			<div class="well">
+				<h3 class="lead">liked by <strong><%= post["username"] %></strong></h3>
 				<br>
 				<%= truncate_html post["text"], :length => 450 %>					
 				<br>
 				<%= truncate_html post["source"], :length => 450 %>					
 				<br>
 				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
-				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <%= post["blog_name"] %> on Tumblr</a>
-				<hr>
+				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <strong><%= post["blog_name"] %></strong> on Tumblr</a>				
+			</div>			
 			<% end %>
 			
 		<% end %>
 	</div>
-	<% end %>
-
-	</div>
+</div>
 </div>
 
 <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
