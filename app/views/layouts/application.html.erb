@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<script type='text/javascript'>var _sf_startpt=(new Date()).getTime()</script>
 <% if current_user %>
 	<title>Like Monkey — <%= current_user.name %></title>
 <% else %>
@@ -12,6 +12,20 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2442790-12']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 
 </head>
 
@@ -44,7 +58,7 @@
 
 
     <div id="footer">
-      
+
       <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -65,5 +79,31 @@
       <br><br>
         <p class="muted credit">Brought to you by <a href="http://jakelevine.me" target="_blank">Jake Levine</a> / <a href="http://www.twitter.com" target="_blank">@jrlevine</a></p> 
     </div>
+
+<script type='text/javascript'>
+    var _sf_async_config={};
+    /** CONFIGURATION START **/
+    _sf_async_config.uid = 10600;
+    _sf_async_config.domain = 'thelikemonkey.com';
+    _sf_async_config.sections = 'Change this to your Section name';  //CHANGE THIS
+    _sf_async_config.authors = 'Change this to your Author name';    //CHANGE THIS
+    /** CONFIGURATION END **/
+    (function(){
+      function loadChartbeat() {
+        window._sf_endpt=(new Date()).getTime();
+        var e = document.createElement('script');
+        e.setAttribute('language', 'javascript');
+        e.setAttribute('type', 'text/javascript');
+        e.setAttribute('src',
+           (('https:' == document.location.protocol) ? 'https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/' : 'http://static.chartbeat.com/') +
+           'js/chartbeat.js');
+        document.body.appendChild(e);
+      }
+      var oldonload = window.onload;
+      window.onload = (typeof window.onload != 'function') ?
+         loadChartbeat : function() { oldonload(); loadChartbeat(); };
+    })();
+</script>
+
 </body>
 </html>
