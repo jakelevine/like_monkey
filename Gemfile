@@ -5,6 +5,7 @@ gem 'bootstrap-sass', '2.3'
 gem 'kaminari'
 gem "truncate_html"
 gem 'dalli'
+gem 'figaro'
 
 group :development do
   gem 'sqlite3', '1.3.5'

@@ -1,11 +1,9 @@
 class User < ActiveRecord::Base
 
-	API_KEY = '0GMVFegjf6D0cyWTCP6ilhgYwokPRh3Fgy8TvA4mMcez6pmhiJ' 
-	API_SECRET = 'G6IHgthYTBmMyupTGO1yxQlmb7c91s6f9sONOakZuejyfayxlA'
 
 	#on_heroku
-	#API_KEY = 'ZozRvHImkaTAbHr2VKeQ4cMlzAmI77wjHc4gRT2CMzMDoatBqj' 
-	#API_SECRET = 'y4JJuYmOma0BaFNKHeJYSlIJ4bY2UeZiwjIDt6LxbvHPrynUyI'
+	API_KEY = ENV['API_KEY']
+	API_SECRET = ENV['API_SECRET']
 
 	def self.create_with_omniauth(auth)
 	  create! do |user|
