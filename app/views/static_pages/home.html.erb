@@ -1,5 +1,5 @@
 
-<div class="hero-unit row" style="min-width: 980px">
+<div class="hero-unit row" style="min-width: 1100px">
         <div class = "span10">
           <h1>Welcome to Like Monkey!</h1>
           
@@ -8,7 +8,7 @@
                 <br>
                   <p>Great, you are signed in as <%= current_user.name %>. Now see what your friends are liking.</p>
                   <br>
-                  <%= link_to "Dance Monkey! Dance!", likes_path, class: "btn btn-info btn-large" %>
+                  <%= link_to "Dance Monkey! Dance!", recent_path, class: "btn btn-info btn-large" %>
                   
 
                 <% else %>
@@ -18,8 +18,8 @@
                   <%= link_to "Sign In With Tumblr", "/auth/tumblr", class: "btn btn-primary btn-large" %>
                 <% end %>
           </div>
-          <div class="span2 pull-right">
-            <img src="http://1.bp.blogspot.com/_4HSUEmGT9Q8/TDXzm1B2EZI/AAAAAAAAAGg/mlwmDoQWbsQ/s320/monkey_dance_left.gif" width="200px">
+          <div class="span3">
+            <img src="http://1.bp.blogspot.com/_4HSUEmGT9Q8/TDXzm1B2EZI/AAAAAAAAAGg/mlwmDoQWbsQ/s320/monkey_dance_left.gif" width="300px">
           </div>
 
 </div>

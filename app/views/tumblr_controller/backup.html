@@ -1,32 +1,87 @@
-	<% user["response"]["liked_posts"].each do |post| %>
+<body data-spy="scroll" data-target="#thenav">
+    <div class="sidebar-nav span3" id="thenav">
+    <div class ="well">
+    <ul class="nav nav-list">
+	<li class="nav-header">Blogs You Follow</li>
+	<% @response.each do |user| %>
+	  <li><a href="#<%= user["username"] %>"><%= user["username"] %></a></li>	
+	<% end %>
+    </ul>
+	</div>
+	<%= paginate @response, :left => 0, :right => 1, :window => 1 %>
+	</div>
+
+
+
+<div class="row">
+  <div class="span8 offset5">
+
+	<% @response.each do |user| %>
+		<div id="<%= user["username"] %>" class="anchor">
+		<h1><%= user["username"] %>'s Liked Posts</h1>
+		<br>
+		<% user["liked_posts"].first(10).each do |post| %>
 			<% if post["type"] == "text" %>
-				<h2><a href="<%= post["post_url"] %>"><%= post["title"] %> </a></h2>
+				<h2><a href="<%= post["post_url"] %>" target="_blank"><%= post["title"] %> </a></h2>
 				<br>
-				<%= post["body"].first(500).html_safe %>... 
+					<%= truncate_html post["body"], :length => 450 %>
+
 				<p>
-				<a href="<%= post["post_url"] %>">Read More from <%=post["blog_name"] %></a>
+				<a href="<%= post["post_url"] %>" target="_blank">View original</a>	
+				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <%= post["blog_name"] %> on Tumblr</a>
+		
 				<hr>
-				<br>
 			<% elsif post["type"] == "photo" %>
-				<a href="<%= post["post_url"] %>"><img src="<%= post["photos"][0]["alt_sizes"][2]["url"] %>"></a>
+				<a href="<%= post["post_url"] %>" target="_blank"><img src="<%= post["photos"][0]["alt_sizes"][1]["url"] %>"></a>
 				<br>
 				<br>
-				<%= post["caption"].first(500).html_safe %>
+				<%= truncate_html post["caption"], :length => 450 %>				
 				<br>
-				<a href="<%= post["post_url"] %>">View original from <%=post["blog_name"] %></a>
-				<br>
+				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
+				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <%= post["blog_name"] %> on Tumblr</a>				
 				<hr>
 			<% elsif post["type"] == "video" %>
 				
 				<%= post["player"][2]["embed_code"].html_safe %>
 				<br>
 				<br>
-				<%= post["caption"].first(500).html_safe %>
+				<%= truncate_html post["caption"], :length => 450 %>								
 				<br>
-				<a href="<%= post["post_url"] %>">View original from <%=post["blog_name"] %> </a>
+				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
+				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <%= post["blog_name"] %> on Tumblr</a>
+				<hr>
+
+			<% elsif post["type"] == "link" %>
+				
+				<h2><a href="<%= post["url"] %>" target="_blank"><%= post["title"] %> </a></h2>
 				<br>
+				<br>
+				<%= truncate_html post["description"], :length => 450 %>					
+				<br>
+				<a href="<%= post["post_url"] %>" target="_blank">View original</a>&nbsp;&nbsp;&nbsp;
+				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <%= post["blog_name"] %> on Tumblr</a>
+				<hr>
+
+			<% elsif post["type"] == "quote" %>
+				
+				<br>
+				<%= truncate_html post["text"], :length => 450 %>					
+				<br>
+				<%= truncate_html post["source"], :length => 450 %>					
+				<br>
+				<a href="<%= post["post_url"] %>" target="_blank">View original</a> 
+				<a class="framey" href="http://www.tumblr.com/follow/<%= post["blog_name"] %>" target="_blank">Follow <%= post["blog_name"] %> on Tumblr</a>
 				<hr>
 			<% end %>
 			
-
 		<% end %>
+	</div>
+	<% end %>
+
+	</div>
+</div>
+
+<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+

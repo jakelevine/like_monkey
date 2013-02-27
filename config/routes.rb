@@ -5,7 +5,7 @@ SampleApp::Application.routes.draw do
   get "tumblr_controller/sort_by_time"
 
   root to: 'static_pages#home'
-  match "/about" => "static_pages#about", :as => :likes
+  match "/about" => "static_pages#about"
   match "/auth/:provider/callback" => "sessions#create"
   match "/signout" => "sessions#destroy", :as => :signout
 
