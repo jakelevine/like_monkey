@@ -94,7 +94,8 @@ class User < ActiveRecord::Base
 			end
 		
 		end
-
+		user.following_likes = like_array
+		user.save
 		return like_array
 
 			
@@ -111,7 +112,7 @@ class User < ActiveRecord::Base
 		end
 		return post_array.sort_by {|hash| hash["timestamp"]}.reverse
 
-	
+	 
 
 	end
 
