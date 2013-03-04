@@ -1,8 +1,5 @@
 class TumblrControllerController < ApplicationController
 
-	caches_action :news_likes
-
-#	caches_page :recent_likes
 	
 	def recent_likes
         # Exchange your oauth_token and oauth_token_secret for an AccessToken instance.

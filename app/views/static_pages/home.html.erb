@@ -1,7 +1,7 @@
 
-<div class="hero-unit row" style="min-width: 1100px">
-        <div class = "span10">
-          <h1>Welcome to Like Monkey!</h1>
+<div class="hero-unit row" style="min-width: 1150px">
+        <div class = "span11">
+          <h1>Welcome to Tumblr Monkey!</h1>
           
             
                 <% if current_user %>
@@ -13,7 +13,7 @@
 
                 <% else %>
                 <br>
-                  <p>See what your friends are Liking on Tumblr</p> 
+                  <p style="font-size:42px;">See what your friends are Liking on Tumblr</p> 
                   <br>
                   <%= link_to "Sign In With Tumblr", "/auth/tumblr", class: "btn btn-primary btn-large" %>
                 <% end %>
