@@ -7,3 +7,4 @@ SampleApp::Application.config.session_store :cookie_store, key: '_sample_app_ses
 # (create the session table with "rails generate session_migration")
 # SampleApp::Application.config.session_store :active_record_store
 
+Rails.application.config.session_store ActionDispatch::Session::CacheStore, :expire_after => 30.minutes
